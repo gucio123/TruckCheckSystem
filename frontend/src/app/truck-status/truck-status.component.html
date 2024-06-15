@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="column">
+    <div class="checking-container">
+      <h2>Queue 1 - Checking Trucks</h2>
+      <div *ngFor="let truck of checkingQueue1">
+        {{ truck | json }}
+      </div>
+    </div>
+    <div class="queue-container">
+      <h2>Queue 1</h2>
+      <div *ngFor="let truck of queue1">
+        {{ truck | json }}
+      </div>
+    </div>
+    <div class="checked-container">
+      <h2>Checked Trucks</h2>
+      <div *ngFor="let truck of getCheckedTrucks()">
+        {{ truck | json }}
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="checking-container">
+      <h2>Queue 2 - Checking Trucks</h2>
+      <div *ngFor="let truck of checkingQueue2">
+        {{ truck | json }}
+      </div>
+    </div>
+    <div class="queue-container">
+      <h2>Queue 2</h2>
+      <div *ngFor="let truck of queue2">
+        {{ truck | json }}
+      </div>
+    </div>
+    <div class="other-container">
+      <h2>Other Trucks</h2>
+      <div *ngFor="let truck of getOtherTrucks()">
+        {{ truck | json }}
+      </div>
+    </div>
+  </div>
+</div>
+<button (click)="arrive()">Arrive New Truck</button>
+
+<!-- Input i przycisk do wywołania obliczenia estymowanego czasu oczekiwania -->
+<div>
+  <input #truckIdInput type="" placeholder="Enter Truck ID">
+  <button (click)="calculateEstimatedWaitTime(truckIdInput.value)">Calculate Estimated Wait Time</button>
+</div>
+
+<!-- Wyświetlanie wyniku -->
+<div *ngIf="estimatedWaitTime !== null">
+  Estimated Wait Time: {{ estimatedWaitTime }} seconds
+</div>
